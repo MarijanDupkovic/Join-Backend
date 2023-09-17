@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    'https://marijand.pythonanywhere.com/'
+    'marijand.pythonanywhere.com/'
 ]
 CORS_ALLOW_ALL_ORIGINS = True
 
