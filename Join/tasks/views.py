@@ -21,9 +21,15 @@ class LoginView(APIView):
             return Response({'token': token.key, 'user_id': user.pk, 'email': user.email})
         return Response(status=status.HTTP_401_UNAUTHORIZED)
    
-class RegistrationViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+class RegistrationView(APIView):
     serializer_class = RegistrationSerializer
+    def post(self, request, *args, **kwargs):
+       if request.method == 'POST':
+            serializer = RegistrationSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+       
   
 class CategoryItemViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
