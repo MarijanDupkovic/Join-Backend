@@ -40,29 +40,11 @@ class TaskItemViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = TaskItemSerializer
     queryset = TaskItem.objects.all()
-    def taskhandler(self, request, format=None):
-         if request.method == 'GET':
-            tasks = TaskItem.objects.all()
-            serializer = TaskItemSerializer(tasks, many=True)
-            return Response(serializer.data)
-         if request.method == 'POST':
-            serializer = TaskItemSerializer(data=request.data)
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED) 
+   
                 
 class ContactItemViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = ContactItemSerializer
     queryset = ContactItem.objects.all()
-    def contacthandler(self, request, format=None):
-        if request.method == 'GET':
-            contacts = ContactItem.objects.all()
-            serializer = ContactItemSerializer(contacts, many=True)
-            return Response(serializer.data)
-        if request.method == 'POST':
-            serializer = ContactItemSerializer(data=request.data)
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+   
          
